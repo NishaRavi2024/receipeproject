@@ -1,0 +1,503 @@
+frst page.html
+
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipe Website</title>
+    <style>
+        a:link, a:visited {
+            background-color: #04AA6D;
+            color: white;
+            padding: 14px 25px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        a:hover, a:active {
+            background-color: #04AA6D;
+        }
+
+        input.ng-dirty.ng-invalid {
+            border: 2px solid red;
+        }
+
+        input.ng-dirty.ng-valid {
+            border: 2px solid green;
+        }
+    </style>
+
+   
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    
+ 
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+
+    <script>
+    $(document).ready(function(){
+        $("input").focus(function(){
+            $(this).css("background-color", "yellow");
+        });
+        $("input").blur(function(){
+            $(this).css("background-color", "green");
+        });
+    });
+    </script>
+
+    <script>
+    
+    var app = angular.module('myApp', []);
+    
+    app.controller('FormController', ['$scope', '$window', function($scope, $window) {
+      
+        $scope.formData = {
+            username: '',
+            password: ''
+        };
+
+        $scope.submitForm = function() {
+            if ($scope.loginForm.$valid) {
+             
+                alert("Login Successful!");
+                $window.location.href = "projectmain.html";  
+            } else {
+                alert("Please fill out the form correctly.");
+            }
+        };
+    }]);
+    </script>
+</head>
+<body>
+    <link rel="stylesheet" href="project.css">
+
+  
+    <header align="center"><h1>FOOD BLOG</h1></header>  
+
+   
+    <form name="loginForm" ng-controller="FormController" novalidate ng-submit="submitForm()">
+        <div class="imgcontainer" align="center">
+            <img src="firstpageimg.jpg" alt="Avatar" class="avatar" width="150">
+        </div>
+        
+        <div class="container" align="center">
+          
+            <label for="uname"><b>Username</b></label>
+            <input type="text" placeholder="Enter Username" name="uname" ng-model="formData.username" required>
+            <span style="color:red" ng-show="loginForm.uname.$dirty && loginForm.uname.$invalid">
+                <span ng-show="loginForm.uname.$error.required">Username is required.</span>
+            </span>
+            
+            
+            <label for="psw"><b>Password</b></label>
+            <input type="password" placeholder="Enter Password" name="psw" ng-model="formData.password" required>
+            <span style="color:red" ng-show="loginForm.psw.$dirty && loginForm.psw.$invalid">
+                <span ng-show="loginForm.psw.$error.required">Password is required.</span>
+            </span>
+            
+          
+            <button type="submit">Login</button>
+
+            <label>
+                <input type="checkbox" checked="checked" name="remember"> Remember me
+            </label>
+        </div>
+
+        
+        <div class="container" style="background-color:#f1f1f1" align="center">
+            <button type="button" class="cancelbtn">Cancel</button>
+        </div>
+    </form>
+</body>
+</html>
+
+firstpage.css
+
+form {
+    border: 3px solid #f1f1f1;
+  }
+  
+  /* Full-width inputs */
+  input[type=text], input[type=password] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+  }
+  
+  /* Set a style for all buttons */
+  button {
+    background-color: #04AA6D;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+  }
+  
+  /* Add a hover effect for buttons */
+  button:hover {
+    opacity: 0.8;
+  }
+  
+  /* Extra style for the cancel button (red) */
+  .cancelbtn {
+    width: auto;
+    padding: 10px 18px;
+    background-color: #f44336;
+  }
+  
+  /* Center the avatar image inside this container */
+  .imgcontainer {
+    text-align: center;
+    margin: 24px 0 12px 0;
+  }
+  
+  /* Avatar image */
+  img.avatar {
+    width: 40%;
+    border-radius: 50%;
+  }
+  
+  /* Add padding to containers */
+  .container {
+    padding: 16px;
+  }
+  
+  /* The "Forgot password" text */
+  span.psw {
+    float: right;
+    padding-top: 16px;
+  }
+  
+  /* Change styles for span and cancel button on extra small screens */
+  @media screen and (max-width: 300px) {
+    span.psw {
+      display: block;
+      float: none;
+    }
+    .cancelbtn {
+      width: 100%;
+    }
+  }
+  
+mainpage.html
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>main project</title>
+        <link rel="stylesheet" type="text/css" href="projectmain.css">
+             <style>
+            body {margin:0;}
+         
+         ul {
+           list-style-type: none;
+           margin: 0;
+           padding: 0;
+           overflow: hidden;
+           background-color: #333;
+           position: fixed;
+           top: 0;
+           width: 100%;
+         }
+         
+         li {
+           float: left;
+         }
+         
+         li a {
+           display: block;
+           color: white;
+           text-align: center;
+           padding: 14px 16px;
+           text-decoration: none;
+         }
+         
+         li a:hover:not(.active) {
+           background-color: #16e016;
+         }
+        
+         </style>
+    </head>
+    <body>
+        <ul>
+            <li><a class="active" href="home">Home</a></li>
+            <li><a class="active" href="news.html">News</a></li>
+            <li><a class="active" href="contact.html">Contact</a></li>
+            <li><a class="active" href="about.html">About</a></li>
+          </ul>
+          
+          <div style="padding:20px;margin-top:30px;background-color:#f1f5f4;height:1500px;">
+    </div>
+    
+        <diV class="wrapper">
+            <div class="card">
+            <img src="juice.jpg">
+            <div class="info">
+                <h1>smoothies</h1>
+                <p>Convenient and Time-Saving. Smoothies are a quick
+                    and easy way to get a nutritious meal or snack in
+                     a matter of minutes. ...</p>
+                <a href="juicereceipe.html" class="btn">Read More</a>
+            </div>
+            </div>
+        </diV>
+
+        <diV class="wrapper">
+            <div class="card">
+            <img src="biriyani.jpg">
+            <div class="info">
+                <h1>Biriyani</h1>
+                <p>Biryani is a delicious rice dish peppered with scrumptious
+                     spices like saffron and cumin and further layered with
+                      spiced meat or veggie protein. </p>
+                <a href="#" class="btn">Read More</a>
+            </div>
+            </div>
+        </diV>
+
+        <diV class="wrapper">
+            <div class="card">
+            <img src="salad.jpg">
+            <div class="info">
+                <h1>Salads</h1>
+                <p>A salad is a dish consisting of mixed ingredients,
+                     frequently vegetables. They are typically served
+                      chilled or at room temperature, though some can
+                       be served warm</p>
+                <a href="#" class="btn">Read More</a>
+            </div>
+            </div>
+        </diV>
+
+        <diV class="wrapper">
+            <div class="card">
+            <img src="noodles.jpg">
+            <div class="info">
+                <h1>Noodles</h1>
+                <p>Noodle, a cooked egg-and-flour paste prominent in European
+                     and Asian cuisine, generally distinguished from pasta by
+                      its elongated ribbonlike form.</p>
+                <a href="#" class="btn">Read More</a>
+            </div>
+            </div>
+        </diV>
+
+        <diV class="wrapper">
+            <div class="card">
+            <img src="curry.jpg">
+            <div class="info">
+                <h1>curry</h1>
+                <p>“Curry is a dish that brings people together,Curry: a passport to flavor paradise”</p>
+                <a href="#" class="btn">Read More</a>
+            </div>
+            </div>
+        </diV>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    </body>
+</html>
+
+maipage.css
+
+*{
+    box-sizing: border-box;
+    font-family: 'Lato',sans-serif;
+}
+html,body{
+    text-align: center;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items:flex-end;
+}
+
+.header{
+    text-align: center;
+}
+
+.wrapper{
+    display: flex;
+    width: 70%;
+    justify-content: space-around;
+}
+
+.card{
+    width: 280px;
+    height: 360px;
+    padding: 2rem 1rem;
+    background: #fff;
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    box-shadow: 0px 7px 10px rgba(0,0,0,0,5);
+    transition: 0.5s ease-in-out;
+}
+
+.card:hover{
+    transform: translateY(20px);
+}
+
+.card:before{
+    content: "";
+    position: absolute;
+    top:0;
+    left:0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom,rgba(0,176,155,0.5),rgba(150,201,61,1));
+    z-index: 2;
+    transition: 0.5s all;
+    opacity: 0;
+}
+
+.card:hover:before{
+opacity: 1;
+}
+
+.card img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.card .info{
+    position: relative;
+    z-index: 3;
+    color: #fff;
+    opacity: 1;
+    transform: translateY(30px);
+    transition: 0.5s,all;
+}
+
+.card:hover .info{
+    opacity: 1;
+    transform: translateY(0px);
+}
+
+.card .info h1{
+    margin: 0;
+}
+
+.card .info p{
+    letter-spacing: 1px;
+    font-size: 15px;
+    margin-top: 8px;
+    margin-bottom: 20px;
+}
+
+.card .info .btn{
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    background: #fff;
+    color: #000;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.4s ease-in-out;
+}
+
+.card .info .btn:hover{
+    box-shadow: 0px 7px 10px rgba(0,0,0,0,5);
+}
+
+
+receipe.html
+
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script>
+    $(document).ready(function(){
+        $("button#toggleButton").click(function(){
+            $(".test").toggle();
+        });
+    });
+    </script>
+    <style>
+        /* Position the button at the right bottom of the screen */
+        button#toggleButton {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            padding: 10px 20px;
+            background-color: #f44336;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        button#toggleButton:hover {
+            background-color: #d32f2f;
+        }
+    </style>
+</head>
+
+<title>Juice Recipe</title>
+<header align="center">
+    <h1>Oats Smoothie Recipe</h1>
+</header>
+
+<body>
+    <div>
+        <img src="oats.jpg" width="1500" height="600">
+    </div>
+
+    <div style="background-color:#FFF4A3;" class="test">
+        <header align="left"><h2>Ingredients</h2></header>
+        <ol>
+            <li>¼ cup old-fashioned oats or quick oats</li>
+            <li>1 banana chopped into chunks and frozen</li>
+            <li>½ cup unsweetened almond milk</li>
+            <li>1 tablespoon creamy peanut butter</li>
+            <li>½ tablespoon pure maple syrup plus additional to taste</li>
+            <li>½ teaspoon pure vanilla extract</li>
+            <li>½ teaspoon ground cinnamon</li>
+            <li>⅛ teaspoon kosher salt (don’t skip this, as it makes the oatmeal pop!)</li>
+            <li>Ice (optional, add at the end if you want a thicker smoothie)</li>
+        </ol>
+    </div>
+
+    <div style="background-color:#FFC0C7;">
+        <header align="left"><h2>Steps</h2></header>
+        <ol>
+            <li>Place the oats in the bottom of a blender and pulse a few times until finely ground.</li>
+            <li>Add the banana, milk, peanut butter, maple syrup, vanilla, cinnamon, and salt.</li>
+            <li>Blend until smooth and creamy, stopping to scrape down the blender as needed.</li>
+            <li>Taste and add additional sweetener if you'd like a sweeter smoothie. Enjoy immediately.</li>
+        </ol>
+    </div>
+
+    <div style="background-color:#D9EEE1;">
+        <header align="left"><h2>Nutrition Facts</h2></header>
+        <ul>
+            <li>Serving: 1 smoothie</li>
+            <li>Protein: 8g</li>
+            <li>Fiber: 7g</li>
+            <li>Calories: 327kcal</li>
+            <li>Fat: 11g</li>
+            <li>Carbohydrates: 54g</li>
+            <li>Saturated Fat: 2g</li>
+            <li>Sugar: 24g</li>
+        </ul>
+    </div>
+
+    <button id="toggleButton">Click me</button>
+
+    <a href="projectmain.html" class="button" style="text-decoration: none;">
+        <button type="button" title="Back">Back</button>
+    </a>
+</body>
+</html>
